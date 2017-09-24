@@ -67,26 +67,26 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
-    <None Include="..\GameProjectContent\bin\burger.xnb">
+    <Content Include="..\GameProjectContent\bin\burger.xnb">
       <Link>Content\graphics\burger.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\GameProjectContent\bin\explosion.xnb">
+    </Content>
+    <Content Include="..\GameProjectContent\bin\explosion.xnb">
       <Link>Content\graphics\explosion.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\GameProjectContent\bin\frenchfries.xnb">
+    </Content>
+    <Content Include="..\GameProjectContent\bin\frenchfries.xnb">
       <Link>Content\graphics\frenchfries.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\GameProjectContent\bin\teddybear.xnb">
+    </Content>
+    <Content Include="..\GameProjectContent\bin\teddybear.xnb">
       <Link>Content\graphics\teddybear.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\GameProjectContent\bin\teddybearprojectile.xnb">
+    </Content>
+    <Content Include="..\GameProjectContent\bin\teddybearprojectile.xnb">
       <Link>Content\graphics\teddybearprojectile.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="app.manifest" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
