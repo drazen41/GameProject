@@ -88,9 +88,9 @@ namespace GameProject
             // load projectile and explosion sprites
 
             // add initial game objects
-
-            // set initial health and score strings
-        }
+			burger = new Burger(Content, @"graphics\burger", GameConstants.WindowWidth/2, GameConstants.WindowHeight * 7 /8, null);
+			// set initial health and score strings
+		}
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -154,9 +154,9 @@ namespace GameProject
 
             spriteBatch.Begin();
 
-            // draw game objects
-            //burger.Draw(spriteBatch);
-            foreach (TeddyBear bear in bears)
+			// draw game objects
+			burger.Draw(spriteBatch);
+			foreach (TeddyBear bear in bears)
             {
                 bear.Draw(spriteBatch);
             }
