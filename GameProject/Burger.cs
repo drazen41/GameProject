@@ -75,17 +75,23 @@ namespace GameProject
         /// <param name="mouse">the current state of the mouse</param>
         public void Update(GameTime gameTime, MouseState mouse)
         {
-            // burger should only respond to input if it still has health
+			// burger should only respond to input if it still has health
+			if (this.health > 0)
+			{
+				// move burger using mouse
+				drawRectangle.X = mouse.X;
+				drawRectangle.Y = mouse.Y;
+				// clamp burger in window
+				if (drawRectangle.Right > GameConstants.WindowWidth)
+					drawRectangle.X = GameConstants.WindowWidth - sprite.Width;
+				if (drawRectangle.Left < 0) drawRectangle.X = 0;
+				if (drawRectangle.Top < 0) drawRectangle.Y = 0;
+				if (drawRectangle.Bottom > GameConstants.WindowHeight) drawRectangle.Y = GameConstants.WindowHeight - sprite.Height;
+				// update shooting allowed
+				// timer concept (for animations) introduced in Chapter 7
 
-            // move burger using mouse
-
-            // clamp burger in window
-
-            // update shooting allowed
-            // timer concept (for animations) introduced in Chapter 7
-
-            // shoot if appropriate
-
+				// shoot if appropriate
+			}
         }
 
         /// <summary>

@@ -57,6 +57,7 @@ namespace GameProject
             // set resolution
             graphics.PreferredBackBufferWidth = GameConstants.WindowWidth;
             graphics.PreferredBackBufferHeight = GameConstants.WindowHeight;
+			IsMouseVisible = true;
         }
 
         /// <summary>
@@ -81,14 +82,17 @@ namespace GameProject
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // load audio content
+			// load audio content
 
-            // load sprite font
+			// load sprite font
 
-            // load projectile and explosion sprites
+			// load projectile and explosion sprites
 
-            // add initial game objects
-			burger = new Burger(Content, @"graphics\burger", GameConstants.WindowWidth/2, GameConstants.WindowHeight * 7 /8, null);
+			// add initial game objects
+			burger = new Burger(Content, @"graphics\burger",
+			   graphics.PreferredBackBufferWidth / 2,
+			   graphics.PreferredBackBufferHeight - graphics.PreferredBackBufferHeight / 8,
+			   null);
 			SpawnBear();
 			// set initial health and score strings
 		}
@@ -112,8 +116,9 @@ namespace GameProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // get current mouse state and update burger
-
+			// get current mouse state and update burger
+			MouseState mouse = Mouse.GetState();
+			burger.Update(gameTime, mouse);
             // update other game objects
             foreach (TeddyBear bear in bears)
             {
@@ -209,14 +214,15 @@ namespace GameProject
         private void SpawnBear()
         {
 			// generate random location
-			int x = GetRandomLocation(GameConstants.SpawnBorderSize, GameConstants.WindowWidth-GameConstants.SpawnBorderSize);
-			int y = GetRandomLocation(GameConstants.SpawnBorderSize, GameConstants.WindowHeight-GameConstants.SpawnBorderSize);
+			int x = GetRandomLocation(GameConstants.SpawnBorderSize,
+				graphics.PreferredBackBufferWidth - 2 * GameConstants.SpawnBorderSize);
+			int y = GetRandomLocation(GameConstants.SpawnBorderSize,
+				graphics.PreferredBackBufferHeight - 2 * GameConstants.SpawnBorderSize);
 			// generate random velocity
 			float speed = GameConstants.MinBearSpeed +  RandomNumberGenerator.NextFloat(GameConstants.BearSpeedRange);
-			double angle = 2 * Math.PI * RandomNumberGenerator.NextDouble();
-			Vector2 velocity = new Vector2(0,0);
-			velocity.X = (float)Math.Cos(angle) * speed;
-			velocity.Y = -1 * (float)Math.Sin(angle) * speed;
+			float angle = RandomNumberGenerator.NextFloat(2 * (float)Math.PI);
+			Vector2 velocity = new Vector2(
+				(float)(speed * Math.Cos(angle)), (float)(speed * Math.Sin(angle)));
 			// create new bear
 			TeddyBear newBear = new TeddyBear(Content, @"graphics\teddybear", x, y, velocity, null, null);
 			// make sure we don't spawn into a collision
