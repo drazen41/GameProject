@@ -6,7 +6,7 @@ using System.Text;
 namespace GameProject
 {
     /// <summary>
-    /// An enumeration of the projectile types
+    /// An enumeration of the projectile types;
     /// </summary>
     public enum ProjectileType
     {

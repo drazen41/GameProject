@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace GameProject
 {
     /// <summary>
-    /// An animated explosion object
+    /// An animated explosion object ;
     /// </summary>
     public class Explosion
     {

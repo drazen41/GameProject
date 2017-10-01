@@ -15,7 +15,7 @@ namespace GameProject
     public class CollisionResolutionInfo
     {
         #region Fields
-
+		// velocity
         Vector2 firstVelocity;
         Rectangle firstDrawRectangle;
         bool firstOutOfBounds;

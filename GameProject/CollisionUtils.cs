@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 namespace GameProject
 {
     /// <summary>
-    /// Provides utilities for checking collisions
+    /// Provides utilities for checking collisions; 
     /// </summary>
     public static class CollisionUtils
     {

@@ -6,8 +6,9 @@ using System.Text;
 namespace GameProject
 {
     /// <summary>
-    /// An enumeration for possible collision sides
+    /// An enumeration for possible collision sides, 
     /// </summary>
+	
     public enum CollisionSide
     {
         None,

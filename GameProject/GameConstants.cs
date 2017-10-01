@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 namespace GameProject
 {
     /// <summary>
-    /// All the constants used in the game
+    /// All the constants used in the game;
     /// </summary>
     public static class GameConstants
     {
