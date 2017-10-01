@@ -140,6 +140,18 @@ namespace GameProject
 			BounceLeftRight();
 
 			// fire projectile as appropriate
+			this.elapsedShotMilliseconds += gameTime.ElapsedGameTime.Milliseconds;
+			if (this.elapsedShotMilliseconds > firingDelay )
+			{
+				elapsedShotMilliseconds = 0;
+				firingDelay = GetRandomFiringDelay();
+				float speed = GameConstants.TeddyBearProjectileSpeed;
+				float angle = 2 * (float)Math.PI;
+				float yVelocity = (float)(speed * angle);
+				Projectile projectile = new Projectile(ProjectileType.TeddyBear, Game1.GetProjectileSprite(ProjectileType.TeddyBear), this.Location.X - GameConstants.TeddyBearProjectileOffset,
+					this.Location.Y - GameConstants.TeddyBearProjectileOffset, yVelocity);
+				Game1.AddProjectile(projectile);
+			}
 			// timer concept (for animations) introduced in Chapter 7
 
 		}
