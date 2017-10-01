@@ -88,11 +88,11 @@ namespace GameProject
         /// </summary>
         public void Update(GameTime gameTime)
         {
-            // move projectile
+			// move projectile
+			drawRectangle.Y += (int)(yVelocity * gameTime.ElapsedGameTime.Milliseconds);
+			// check for outside game window
 
-            // check for outside game window
-
-        }
+		}
 
         /// <summary>
         /// Draws the projectile

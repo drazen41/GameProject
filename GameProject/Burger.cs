@@ -88,19 +88,30 @@ namespace GameProject
 				if (drawRectangle.Top < 0) drawRectangle.Y = 0;
 				if (drawRectangle.Bottom > GameConstants.WindowHeight) drawRectangle.Y = GameConstants.WindowHeight - sprite.Height;
 				// update shooting allowed
-				if (mouse.LeftButton == ButtonState.Pressed)
+				if (!canShoot)
 				{
-					float speed = GameConstants.FrenchFriesProjectileSpeed;
-					float angle = 2 * (float)Math.PI;
-					float yVelocity = (float)(speed * Math.Sin(angle));
-					
-					Projectile projectile = new Projectile(ProjectileType.FrenchFries, Game1.GetProjectileSprite(ProjectileType.FrenchFries), 
-						drawRectangle.X - GameConstants.FrenchFriesProjectileOffset, drawRectangle.Y +  GameConstants.FrenchFriesProjectileOffset, yVelocity);
-					Game1.AddProjectile(projectile);
+					elapsedCooldownMilliseconds += gameTime.ElapsedGameTime.Milliseconds;
+					if (elapsedCooldownMilliseconds >= GameConstants.BurgerTotalCooldownMilliseconds || mouse.LeftButton == ButtonState.Released)
+					{
+						canShoot = true;
+						elapsedCooldownMilliseconds = 0;
+					}
 				}
+
 				// timer concept (for animations) introduced in Chapter 7
 
 				// shoot if appropriate
+				if (mouse.LeftButton == ButtonState.Pressed && canShoot)
+				{
+					float speed = GameConstants.FrenchFriesProjectileSpeed;
+					float angle = -2 * (float)Math.PI;
+					float yVelocity = (float)(speed * angle);
+
+					Projectile projectile = new Projectile(ProjectileType.FrenchFries, Game1.GetProjectileSprite(ProjectileType.FrenchFries),
+						drawRectangle.X - GameConstants.FrenchFriesProjectileOffset, drawRectangle.Y + GameConstants.FrenchFriesProjectileOffset, yVelocity);
+					Game1.AddProjectile(projectile);
+					canShoot = false;
+				}
 			}
         }
 
