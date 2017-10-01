@@ -87,7 +87,8 @@ namespace GameProject
 			// load sprite font
 
 			// load projectile and explosion sprites
-
+			teddyBearProjectileSprite = Content.Load<Texture2D>(@"graphics\teddybearprojectile");
+			frenchFriesSprite = Content.Load<Texture2D>(@"graphics\frenchfries");
 			// add initial game objects
 			burger = new Burger(Content, @"graphics\burger",
 			   graphics.PreferredBackBufferWidth / 2,
@@ -191,8 +192,17 @@ namespace GameProject
         /// <returns>the projectile sprite for the type</returns>
         public static Texture2D GetProjectileSprite(ProjectileType type)
         {
-            // replace with code to return correct projectile sprite based on projectile type
-            return frenchFriesSprite;
+			// replace with code to return correct projectile sprite based on projectile type
+			switch (type )
+			{
+				case ProjectileType.FrenchFries:
+					return frenchFriesSprite;
+				case ProjectileType.TeddyBear:
+					return teddyBearProjectileSprite;
+				default:
+					return frenchFriesSprite;
+			}
+			//return frenchFriesSprite;
         }
 
         /// <summary>
@@ -201,7 +211,7 @@ namespace GameProject
         /// <param name="projectile">the projectile to add</param>
         public static void AddProjectile(Projectile projectile)
         {
-
+			projectiles.Add(projectile);
         }
 
         #endregion
