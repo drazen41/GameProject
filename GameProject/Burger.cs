@@ -103,14 +103,13 @@ namespace GameProject
 				// shoot if appropriate
 				if (mouse.LeftButton == ButtonState.Pressed && canShoot)
 				{
-					float speed = GameConstants.FrenchFriesProjectileSpeed;
-					float angle = -2 * (float)Math.PI;
-					float yVelocity = (float)(speed * angle);
-
-					Projectile projectile = new Projectile(ProjectileType.FrenchFries, Game1.GetProjectileSprite(ProjectileType.FrenchFries),
-						drawRectangle.X - GameConstants.FrenchFriesProjectileOffset, drawRectangle.Y + GameConstants.FrenchFriesProjectileOffset, yVelocity);
-					Game1.AddProjectile(projectile);
 					canShoot = false;
+					Projectile projectile = new Projectile(ProjectileType.FrenchFries,
+						Game1.GetProjectileSprite(ProjectileType.FrenchFries),
+						drawRectangle.Center.X,
+						drawRectangle.Center.Y - GameConstants.FrenchFriesProjectileOffset,
+						-GameConstants.FrenchFriesProjectileSpeed);
+					Game1.AddProjectile(projectile);
 				}
 			}
         }
