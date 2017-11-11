@@ -54,7 +54,25 @@ namespace GameProject
         #endregion
 
         #region Properties
-
+		/// <summary>
+		/// Gets and sets health for the burger
+		/// </summary>
+		public int Health
+		{
+			get { return this.health; }
+			set
+			{
+				if (value < 0)
+				{
+					this.health = 0;
+				}
+				else
+				{
+					this.health = value;
+				}
+				
+			}
+		}
         /// <summary>
         /// Gets the collision rectangle for the burger
         /// </summary>

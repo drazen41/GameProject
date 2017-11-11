@@ -194,9 +194,26 @@ namespace GameProject
 			}
 
 			// check and resolve collisions between burger and teddy bears
-
+			foreach (var bear in bears)
+			{
+				if (bear.Active && bear.CollisionRectangle.Intersects(burger.CollisionRectangle))
+				{
+					burger.Health -= GameConstants.BearDamage;
+					bear.Active = false;
+					Explosion explosion = new Explosion(explosionSpriteStrip, bear.DrawRectangle.X, bear.DrawRectangle.Y);
+					explosions.Add(explosion);
+				}
+			}
 			// check and resolve collisions between burger and projectiles
+			foreach (var projectile in projectiles)
+			{
+				if (projectile.Type == ProjectileType.TeddyBear && projectile.Active && projectile.CollisionRectangle.Intersects(burger.CollisionRectangle))
+				{
+					burger.Health -= GameConstants.TeddyBearProjectileDamage;
+					projectile.Active = false;
 
+				}
+			}
 
 
 			// clean out inactive teddy bears and add new ones as necessary
@@ -206,6 +223,10 @@ namespace GameProject
 				{
 					bears.RemoveAt(i);
 				}
+			}
+			while (bears.Count != GameConstants.MaxBears)
+			{
+				SpawnBear();
 			}
 			// clean out inactive projectiles
 			for (int i = projectiles.Count - 1; i >= 0; i--)
@@ -311,7 +332,14 @@ namespace GameProject
 			// create new bear
 			TeddyBear newBear = new TeddyBear(Content, @"graphics\teddybear", x, y, velocity, null, null);
 			// make sure we don't spawn into a collision
-
+			List<Rectangle> rects = GetCollisionRectangles();
+			while (!CollisionUtils.IsCollisionFree(newBear.DrawRectangle, rects))
+			{
+				x = GetRandomLocation(GameConstants.SpawnBorderSize, graphics.PreferredBackBufferWidth - 2 * GameConstants.SpawnBorderSize);
+				y = GetRandomLocation(GameConstants.SpawnBorderSize, graphics.PreferredBackBufferHeight - 2 * GameConstants.SpawnBorderSize);
+				newBear.X = x;
+				newBear.Y = y;
+			}
 			// add new bear to list
 			bears.Add(newBear);
 		}
